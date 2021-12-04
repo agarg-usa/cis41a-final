@@ -4,6 +4,9 @@ import datetime
 
 
 class Order:
+	"""
+	Gets Order and computes and prints the bill based on the order
+	"""
 	def __init__(self):
 		self.burgerCollection = Burger.BurgerCollection.get_burger_collection()
 		self.quantities = dict()
