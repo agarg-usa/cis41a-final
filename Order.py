@@ -10,10 +10,17 @@ class Order:
         self.is_discount = False
         self._init_quantity()
 
+    """
+    This method initializes quantities dictionary to 0
+    """
     def _init_quantity(self):
         for burger in self.burgerCollection.get_burgers():
             self.quantities[burger.get_name()] = 0
 
+    """
+    This method gets the input from the user, by repeatedly asking the user what it wants to order
+    then asking for the quantity of what the user will order
+    """
     def get_inputs(self):
         while True:
             self.is_discount = input("Are you a student or a staff member? Please enter yes or no: ")
@@ -45,6 +52,9 @@ class Order:
                 except ValueError:
                     print("That was an invalid input. Please enter a number greater than or equal to 0")
 
+    """
+    This method displays the contents of the bill, including the total taxed value depending on discount status.
+    """
     def print_bill(self):
         price_before_tax, price_after_tax, tax = self.compute_bill()
         output_string = "Bill: \n"
@@ -60,6 +70,9 @@ class Order:
         print(output_string)
         return output_string
 
+    """
+    This method is a helper method that computes the bill for the print function to call.
+    """
     def compute_bill(self):
         total_cost = 0
         for burger_name in self.quantities:
@@ -74,6 +87,9 @@ class Order:
 
         return total_cost, total_cost_after_tax, tax
 
+    """
+    This method saves the outputs of print_bill to a file
+    """
     def save_to_file(self, output):
         time_stamp = time.time()
         order_time_stamp = datetime.datetime.fromtimestamp(time_stamp).strftime('%Y-%m-%d %H-%M-%S')
