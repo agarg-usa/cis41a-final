@@ -4,25 +4,25 @@ class Burger:
 		self.price = price
 		self.description = description
 
-	def print_description(self):
+	def print_burger(self):
 		print(f"{self.price}: {self.name} - {self.description}")
 
-	def get_name(self):
+	def get_name(self) -> str:
 		return self.name
 
-	def get_price(self):
+	def get_price(self) -> int:
 		return self.price
 
-	def get_description(self):
+	def get_description(self) -> str:
 		return self.description
 
-	def set_name(self, name):
+	def set_name(self, name : str):
 		self.name = name
 
-	def set_price(self, price):
+	def set_price(self, price : int):
 		self.price = price
 
-	def set_description(self, description):
+	def set_description(self, description : str):
 		self.description = description
 
 class BurgerCollection:
@@ -31,7 +31,7 @@ class BurgerCollection:
 	def get_burger_collection():
 		return BurgerCollection([DeAnzaBurger(), BaconCheese(), MushroomSwiss(), WesternBurger(), DonCaliVeggieBurger()])
 
-	def __init__(self, burgers):
+	def __init__(self, burgers : list):
 		self.burgers = burgers
 		self.burgerDict = {}
 		for burger in burgers:
@@ -39,21 +39,24 @@ class BurgerCollection:
 
 	def show_menu(self):
 		for burger in self.burgers:
-			burger.print_description()
+			burger.print_burger()
+
+	def does_burger_name_exist(self, name : str):
+		return name in self.burgerDict
 
 	# getters
-	def get_burger_by_name(self, name):
+	def get_burger_by_name(self, name : str):
 		return self.burgerDict[name]
 
 	def get_burgers(self):
 		return self.burgers
 
 	# setters
-	def add_burger(self, burger):
+	def add_burger(self, burger : Burger):
 		self.burgers.append(burger)
 		self._add_to_dict(burger)
 
-	def _add_to_dict(self, burger):
+	def _add_to_dict(self, burger : Burger):
 		self.burgerDict[burger.name] = burger
 
 	# remove
@@ -83,5 +86,5 @@ class DonCaliVeggieBurger(Burger):
 	def __init__(self):
 		super().__init__("Don Cali Burger", 5.75, "Spring Mix Lettuce, Tomato, Red Onion, Avocado, Smoked Gouda, on a Toasted Bun")
 
-	def print_description(self):
+	def print_burger(self):
 		print(f"{self.price}: {self.name} (VEGGIE OPTION FOR VEGETARIANS!) - {self.description}")
