@@ -28,7 +28,9 @@ class Order:
 
         while True:
             self.burgerCollection.show_menu()
-            item = input("Please choose your option: ").strip()
+            item = input("Please choose your option (Press q to exit): ").strip()
+            if item == "q":
+                break
             if not self.burgerCollection.does_burger_name_exist(item):
                 print("Burger does not exist.")
                 continue
@@ -46,7 +48,6 @@ class Order:
     def print_bill(self):
         price_before_tax, price_after_tax, tax = self.compute_bill()
         output_string = "Bill: \n"
-        # print("Bill:")
         for burger_name in self.quantities:
             this_burger = self.burgerCollection.get_burger_by_name(burger_name)
             this_name = this_burger.get_name()
