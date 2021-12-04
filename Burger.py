@@ -61,7 +61,7 @@ class BurgerCollection:
 
 	# remove
 
-	def remove_burger(self, burger):
+	def remove_burger(self, burger : Burger):
 		self.burgers.remove(burger)
 		del self.burgerDict[burger.name]
 
